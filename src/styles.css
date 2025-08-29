@@ -23,3 +23,5 @@ body {
                0 0 30px rgba(72, 209, 255, 0.6),
                0 0 45px rgba(72, 209, 255, 0.4);
 }
+html, body { height: 100%; }
+body { overscroll-behavior-y: contain; }
