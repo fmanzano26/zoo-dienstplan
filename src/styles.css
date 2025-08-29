@@ -1,10 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@tailwind base; @tailwind components; @tailwind utilities;
-body { @apply bg-bg text-white; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-.card { @apply bg-panel border border-white/10 rounded-2xl p-6 backdrop-blur; }
-.btn { @apply rounded-xl px-4 py-3 border border-neon/30 transition; }
-.btn:hover { @apply border-neon/70 shadow-neon; }
-.input { @apply w-full rounded-2xl bg-transparent border border-white/15 px-4 py-3 outline-none focus:border-neon/70; }
-.logoNeon { background: radial-gradient(60% 60% at 50% 35%, rgba(125, 249, 255, 0.25), transparent 60%); }
-.logoNeonText { text-shadow: 0 0 22px rgba(125, 249, 255, 0.55), 0 0 6px rgba(125, 249, 255, 0.35); }
-header .LanguageSwitch button { @apply rounded-xl px-3 py-1.5 text-sm bg-panel border border-white/10 hover:border-neon/50 transition; }
+body {
+  @apply bg-dark text-white;
+}
+
+.card {
+  @apply bg-panel border border-white/10 rounded-2xl p-6 backdrop-blur overflow-hidden;
+}
+
+.btn {
+  @apply bg-neon text-black font-semibold rounded-xl transition px-4 py-2;
+}
+
+.btn:hover {
+  @apply shadow-neon;
+}
+
+.logoNeonText {
+  text-shadow: 0 0 15px rgba(72, 209, 255, 0.8), 
+               0 0 30px rgba(72, 209, 255, 0.6),
+               0 0 45px rgba(72, 209, 255, 0.4);
+}
