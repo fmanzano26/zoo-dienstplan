@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body { height: 100%; margin: 0; background: #080C14; color: #D7DEE7; }
+
+body::before{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(103,247,255,0.06), transparent 60%),
+    radial-gradient(800px 400px at 10% 10%, rgba(103,247,255,0.04), transparent 60%);
+  background-repeat:no-repeat; background-color:#080C14;
+}
+
+.neon-title{ text-shadow:0 0 10px rgba(103,247,255,.9),0 0 20px rgba(103,247,255,.7),0 0 40px rgba(103,247,255,.5); }
+
+.card-hover{ transition: box-shadow .2s ease, border-color .2s ease, transform .2s ease; }
+.card-hover:hover{ border-color:rgba(103,247,255,.8); box-shadow:0 0 0 1px rgba(103,247,255,.3),0 0 18px rgba(103,247,255,.25); transform:translateY(-2px); }
+
+input::placeholder, textarea::placeholder{ color:#7B8599; }
+
+/* === Efecto de “contraseña” reutilizable para inputs/select/textarea === */
+.input-glow{
+  border-radius: 1rem;               /* rounded-2xl */
+  border: 1px solid #2B3140;         /* zoo-border */
+  background: #0F131A;               /* gris oscuro */
+  padding: 1rem;                      /* py-4 px-4 */
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(103,247,255,0.20); /* borde interno suave tipo “doble” */
+  transition: box-shadow .18s ease, border-color .18s ease;
+}
+.input-glow:focus,
+.input-glow:focus-visible{
+  border-color: rgba(103,247,255,0.55);
+  box-shadow:
+    0 0 0 3px rgba(103,247,255,0.18),   /* glow exterior */
+    inset 0 0 0 1px rgba(103,247,255,0.40); /* interior más marcado */
+}

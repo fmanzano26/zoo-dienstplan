@@ -1,0 +1,16 @@
+# dependencias / build
+node_modules/
+.next/
+out/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# entorno (no subir credenciales)
+.env*
+!.env.example
+
+# sistema
+.DS_Store
