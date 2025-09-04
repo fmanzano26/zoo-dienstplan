@@ -1,18 +1,26 @@
 import { google } from 'googleapis'
 
 export function requireCreds() {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
-  const key = process.env.GOOGLE_PRIVATE_KEY
   const sheetId = process.env.GOOGLE_SHEET_ID
-  if (!email || !key || !sheetId) {
+  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
+  let key = process.env.GOOGLE_PRIVATE_KEY
+
+  if (!sheetId || !email || !key) {
     throw new Error('Google Service Account credentials are missing')
   }
-  return { email, key: key.replace(/\\n/g, '\n'), sheetId }
+
+  // Acepta tanto formato "\n" como multilínea y limpia posibles CR
+  key = key.replace(/\\n/g, '\n').replace(/\r/g, '')
+
+  return { sheetId, email, key }
 }
 
 export async function getSheetsClient() {
   const { email, key } = requireCreds()
-  const auth = new google.auth.JWT(email, undefined as any, key, ['https://www.googleapis.com/auth/spreadsheets'])
-  const sheets = google.sheets({ version: 'v4', auth })
-  return sheets
+  const auth = new google.auth.JWT({
+    email,
+    key,
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  })
+  return google.sheets({ version: 'v4', auth })
 }
