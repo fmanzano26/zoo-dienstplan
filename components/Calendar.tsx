@@ -44,7 +44,10 @@ export default function Calendar({ lang, value, onChange, month }: CalendarProps
   function isSelectable(d: Dayjs) {
     const dow = d.isoWeekday()
     const inMonth = d.month() === ref.month()
-    return inMonth && (dow === 4 || dow === 5 || dow === 6) // Jue/Vie/Sáb
+    const inFirstWeekNext =
+      d.month() === ref.add(1, 'month').month() && d.date() <= 7
+    // Permitir Jue/Vie/Sáb del mes visible y, además, la primera semana del mes siguiente
+    return (inMonth || inFirstWeekNext) && (dow === 4 || dow === 5 || dow === 6)
   }
 
   function toggle(d: Dayjs) {
@@ -66,10 +69,10 @@ export default function Calendar({ lang, value, onChange, month }: CalendarProps
 
       <div className="grid grid-cols-7 gap-2">
         {days.map(d => {
-          const inMonth = d.month() === ref.month()
           const key = d.format('YYYY-MM-DD')
           const selected = value.includes(key)
           const selectable = isSelectable(d)
+          // Hacer ver en gris si no es seleccionable
           return (
             <button
               key={key}
@@ -77,13 +80,11 @@ export default function Calendar({ lang, value, onChange, month }: CalendarProps
               onClick={() => toggle(d)}
               className={[
                 "h-12 rounded-xl border text-sm",
-                // tonos más grises para celdas; cian solo cuando está seleccionado
                 selectable
                   ? (selected
                       ? "bg-zoo-cyan/85 text-black border-transparent"
                       : "bg-white/5 border-white/10 hover:border-white/20")
                   : "bg-white/2.5 border-white/5 opacity-50 cursor-not-allowed",
-                inMonth ? "" : "opacity-30",
               ].join(' ')}
             >
               {d.date().toString().padStart(2,'0')}

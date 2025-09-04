@@ -1,3 +1,4 @@
+
 export type Lang = 'de' | 'es'
 
 export const t = (lang: Lang) => ({
@@ -26,6 +27,14 @@ export const t = (lang: Lang) => ({
     ? 'Google Service Account Anmeldedaten fehlen.'
     : 'Google Service Account credentials are missing.',
 
+  // Ventana de envío (1–22)
+  window_closed: lang === 'de'
+    ? 'Außerhalb des Zeitfensters: Einsendungen sind nur vom 1. bis 22. jedes Monats möglich. Bitte versuche es ab dem 1. des nächsten Monats erneut.'
+    : 'Fuera de fecha: solo se puede enviar del 1 al 22 de cada mes. Vuelve a partir del día 1 del próximo mes.',
+  window_notice: lang === 'de'
+    ? 'Hinweis: Einsendungen sind nur vom 1.–22. des Monats möglich.'
+    : 'Aviso: los envíos solo están permitidos del día 1 al 22 de cada mes.',
+  
   // Manager
   enter_pass: lang === 'de' ? 'Passwort eingeben' : 'Introduce la contraseña',
   unlock: lang === 'de' ? 'Öffnen' : 'Entrar',
